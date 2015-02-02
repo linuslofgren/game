@@ -11,14 +11,14 @@ start(5.0);
 //start function, defines variables, functions and etc. Also calls the loop function.
 function start(delay)
 {
-	delay = delay;
+	var delay = delay;
 	canvas = document.getElementById("canvas");
 	ctx = canvas.getContext("2d");
 	canvas.width = 500;
 	canvas.height = 500;
 	setImages();
-	canvas.addEventListener("click", keypressed);
-	window.requestAnimationFrame(loop);
+	window.addEventListener("keydown", keypressed);
+	window.requestAnimationFrame(function(timestamp){loop(timestamp,delay);});
 }
 
 //Loads all images
@@ -31,7 +31,7 @@ function setImages()
 }
 
 //The loop function runs as often as possible. The timedLoop runs with a specific time delay.
-function loop(timestamp)
+function loop(timestamp,delay)
 {
 	//This bit calls timedLoop with the correct delay
 	if(typeof lastTime == "undefined")
@@ -45,7 +45,7 @@ function loop(timestamp)
 		lastTime = timestamp;
 	}
 	//Calls itself to keep the program running
-	window.requestAnimationFrame(loop);
+	window.requestAnimationFrame(function(timestamp){loop(timestamp,delay);});
 }
 
 // The timedLoop runs with a specific time delay. The delay is defined by the delay variabe, in microseconds. To account for slight offset timeCorrection is used.
@@ -108,9 +108,9 @@ function PlatformStd(x, y, onGround)
 	}
 }
 
-function keypressed()
+function keypressed(e)
 {
-	alert();
+	console.log(e.keyCode);
 }
 
 player = 

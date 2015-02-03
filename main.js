@@ -2,11 +2,21 @@
 var init = function() {
 //Delay: one of the global variables
 //var delay = 5.0;
+//Loads all images
+
+
 //Calls start to start the program.
+var images = {
+	setImages: function() {
+		this.platformImage = new Image();
+		this.platformImage.src = "platform.png";
+		this.playerImage = new Image();
+		this.playerImage.src = "player.png";
+	}
+}
+platforms = [];
+objects = [platforms];
 start(5.0);
-
-
-
 
 //start function, defines variables, functions and etc. Also calls the loop function.
 function start(delay)
@@ -16,19 +26,11 @@ function start(delay)
 	var ctx = canvas.getContext("2d");
 	canvas.width = 500;
 	canvas.height = 500;
-	setImages();
+	images.setImages();
 	window.addEventListener("keydown", keypressed);
 	window.requestAnimationFrame(function(timestamp){loop(timestamp,delay,ctx);});
 }
 
-//Loads all images
-function setImages()
-{
-	platformImage = new Image();
-	platformImage.src = "platform.png";
-	playerImage = new Image();
-	playerImage.src = "player.png";
-}
 
 //The loop function runs as often as possible. The timedLoop runs with a specific time delay.
 function loop(timestamp,delay,ctx)
@@ -59,8 +61,9 @@ function timedLoop(c,ctx)
 
 function calculate(c)
 {
-	for(var i; i++; i<objects.length()){
-		var self = object[i];
+	for(var i = 0; i++; i<objects.length()){
+		console.log("1")
+		var self = objects[i];
 		if(self.gravity){
 			if(typeof self.xSpeed === float || typeof self.xSpeed === int){
 				self.xSpeed += 0.98*self.gravMult*c;
@@ -75,54 +78,53 @@ function draw(ctx)
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 	for(var i = 0;i<platforms.length;i++)
 	{
-		platforms[i].draw();
+		platforms[i].draw(ctx);
 	}
 	player.draw(ctx);
 }
 
 //All platforms in a list.
-platforms = [];
-objects = [platforms];
-function StdObj() {
-	
-}
+
 //The platform constructor.
-function PlatformStd(x, y, onGround)
+function PlatformStd(x, y, onGround, gravity)
 {
 	this.xPos = x;
 	this.yPos = y;
-	this.img = platformImage;
-	this.width = img.width;
-	this.height = img.height;
+	this.img = images.platformImage;
+	function hightwidth(img) {
+		this.width = img.width;
+		this.height = img.height;
+	}
+	this.img.onload = hightwidth(this.img);
+	platforms.push(this);
+	this.gravity = gravity;
 	
-	
-	//Shortcut for having a platform on the ground, the x parameter will be overlooked.
+	//Shortcut for having a platform on the ground, the y parameter will be overlooked.
 	if(onGround)
 	{
-		xPos = 500-img.height;
+		this.yPos = 500-100;
 	}
 	
 	this.calculate= function()
 	{
 	}
-	this.draw = function()
+	this.draw = function(ctx)
 	{
-		ctx.drawImage(this.xPos,this.yPos,this.img);
+		ctx.drawImage(this.img, this.xPos,this.yPos);
 	}
 }
-PlatformStd.prototype = new StdObj();
 function keypressed(e)
 {
 	console.log(e.keyCode);
 }
 
-player = 
+var player = 
 {
 	xPos: 50,
 	yPos: 50,
 	xSpeed: 0,
 	ySpeed: 0,
-	img: playerImage,
+	img: images.playerImage,
 	gravity: true,
 	gravMult: 1.0,
 	draw: function(ctx)
@@ -139,6 +141,9 @@ player =
 		this.xPos += (this.xSpeed)*c;
 		this.yPos += (this.ySpeed)*c;
 	}
+	
 }
+objects.push(player);
+var my_plaform = new PlatformStd(10,10,true,false);
 }
 window.onload = init;

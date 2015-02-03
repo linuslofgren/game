@@ -12,13 +12,13 @@ start(5.0);
 function start(delay)
 {
 	var delay = delay;
-	canvas = document.getElementById("canvas");
-	ctx = canvas.getContext("2d");
+	var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
 	canvas.width = 500;
 	canvas.height = 500;
 	setImages();
 	window.addEventListener("keydown", keypressed);
-	window.requestAnimationFrame(function(timestamp){loop(timestamp,delay);});
+	window.requestAnimationFrame(function(timestamp){loop(timestamp,delay,ctx);});
 }
 
 //Loads all images
@@ -31,7 +31,7 @@ function setImages()
 }
 
 //The loop function runs as often as possible. The timedLoop runs with a specific time delay.
-function loop(timestamp,delay)
+function loop(timestamp,delay,ctx)
 {
 	//This bit calls timedLoop with the correct delay
 	if(typeof lastTime == "undefined")
@@ -41,20 +41,20 @@ function loop(timestamp,delay)
 	else if (timestamp - lastTime >= delay)
 	{
 		var timeCorrection = (timestamp - lastTime)/delay;
-		timedLoop(timeCorrection);
+		timedLoop(timeCorrection,ctx	);
 		lastTime = timestamp;
 	}
 	//Calls itself to keep the program running
-	window.requestAnimationFrame(function(timestamp){loop(timestamp,delay);});
+	window.requestAnimationFrame(function(timestamp){loop(timestamp,delay,ctx);});
 }
 
 // The timedLoop runs with a specific time delay. The delay is defined by the delay variabe, in microseconds. To account for slight offset timeCorrection is used.
-function timedLoop(c)
+function timedLoop(c,ctx)
 {
 	//Calculate everything, c = timeCorrection.
 	calculate(c);
 	//Draw everything in correct position
-	draw();
+	draw(ctx);
 }
 
 function calculate(c)
@@ -70,19 +70,22 @@ function calculate(c)
 	player.calculate(c);
 }
 
-function draw()
+function draw(ctx)
 {
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 	for(var i = 0;i<platforms.length;i++)
 	{
 		platforms[i].draw();
 	}
-	player.draw();
+	player.draw(ctx);
 }
 
 //All platforms in a list.
 platforms = [];
-objects = [];
+objects = [platforms];
+function StdObj() {
+	
+}
 //The platform constructor.
 function PlatformStd(x, y, onGround)
 {
@@ -107,7 +110,7 @@ function PlatformStd(x, y, onGround)
 		ctx.drawImage(this.xPos,this.yPos,this.img);
 	}
 }
-
+PlatformStd.prototype = new StdObj();
 function keypressed(e)
 {
 	console.log(e.keyCode);
@@ -122,7 +125,7 @@ player =
 	img: playerImage,
 	gravity: true,
 	gravMult: 1.0,
-	draw: function()
+	draw: function(ctx)
 	{
 		ctx.drawImage(this.img,this.xPos,this.yPos);
 	},

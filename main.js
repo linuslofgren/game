@@ -28,6 +28,7 @@ function start(delay)
 	canvas.height = 500;
 	images.setImages();
 	window.addEventListener("keydown", keypressed);
+	window.addEventListener("keyup", keyup);
 	window.requestAnimationFrame(function(timestamp){loop(timestamp,delay,ctx);});
 }
 
@@ -61,12 +62,25 @@ function timedLoop(c,ctx)
 
 function calculate(c)
 {
-	for(var i = 0; i++; i<objects.length()){
-		console.log("1")
+	for(var i = 0; i<objects.length; i++){
 		var self = objects[i];
 		if(self.gravity){
-			if(typeof self.xSpeed === float || typeof self.xSpeed === int){
-				self.xSpeed += 0.98*self.gravMult*c;
+			if(typeof self.ySpeed == "number"){
+				self.ySpeed += 0.0098*self.gravMult*c;
+			}
+		}
+	}
+	for(var i = 0; i<platforms.length; i++){
+		if((player.xPos >= platforms[i].xPos && player.xPos+player.img.width <= platforms[i].xPos+platforms[i].img.width)&&
+		(player.yPos+player.img.height >= platforms[i].yPos && player.yPos+player.img.height <= platforms[i].yPos+platforms[i].img.height)){
+			if(!player.onGround){
+				player.ySpeed = -player.ySpeed*0.5;
+			}
+			if(Math.abs(player.ySpeed)<0.1&&!player.onGround){
+				player.yPos = platforms[i].yPos-player.img.height;
+				player.ySpeed = 0;
+				player.gravity = false;
+				player.onGround = true;
 			}
 		}
 	}
@@ -76,11 +90,11 @@ function calculate(c)
 function draw(ctx)
 {
 	ctx.clearRect(0,0,canvas.width,canvas.height);
+	player.draw(ctx);
 	for(var i = 0;i<platforms.length;i++)
 	{
 		platforms[i].draw(ctx);
 	}
-	player.draw(ctx);
 }
 
 //All platforms in a list.
@@ -113,9 +127,31 @@ function PlatformStd(x, y, onGround, gravity)
 		ctx.drawImage(this.img, this.xPos,this.yPos);
 	}
 }
+var keys = [];
 function keypressed(e)
 {
-	console.log(e.keyCode);
+	
+	if(e.keyCode == 32){
+		var is;
+		for(var i = 0; i<keys.length; i++){
+			if(keys[i] == 32){
+				is = true;
+			}
+		}
+		if(!is){
+			keys.push(32);
+			player.jump();
+		}
+	}
+}
+function keyup() {
+	var is;
+	for(var i = 0; i<keys.length; i++){
+		if(keys[i] == 32){
+			is = i;
+		}
+	}
+	keys.splice(is,1);
 }
 
 var player = 
@@ -126,18 +162,21 @@ var player =
 	ySpeed: 0,
 	img: images.playerImage,
 	gravity: true,
+	onGround: false,
 	gravMult: 1.0,
+	jump: function(){
+		if(this.onGround){
+			this.ySpeed = 5;
+			this.onGround = false;
+			this.gravity = true;
+		}
+	},
 	draw: function(ctx)
 	{
 		ctx.drawImage(this.img,this.xPos,this.yPos);
 	},
 	calculate: function(c)
 	{
-		var onPlatform;
-		//for(var i = 0;i<platforms.length;i++)
-		//{
-		//	if(platforms[i].)
-		//}
 		this.xPos += (this.xSpeed)*c;
 		this.yPos += (this.ySpeed)*c;
 	}

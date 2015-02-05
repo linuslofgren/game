@@ -74,10 +74,8 @@ function calculate(c)
 	for(var i = 0; i<platforms.length; i++){
 		if((player.xPos+player.img.width >= platforms[i].xPos && player.xPos <= platforms[i].xPos+platforms[i].img.width)&&
 		(player.yPos+player.img.height >= platforms[i].yPos && player.yPos+player.img.height <= platforms[i].yPos+platforms[i].img.height)){
-			console.log(4);
 			if(!player.onGround&&!player.jumping){
 				player.onGround = true;
-				console.log(3);
 				on = true;
 			}
 			if(player.onGround){
@@ -106,8 +104,13 @@ function draw(ctx)
 }
 
 function loadlevel(level){
-	new PlatformStd(100,150,false,false);
+	new PlatformStd(50,150,false,false);
 	new PlatformStd(100,250,false,false);
+	new PlatformStd(100,150,false,false);
+	new PlatformStd(300,450,false,false);
+	new PlatformStd(250,250,false,false);
+	new PlatformStd(250,350,false,false);
+	new PlatformStd(0,350,false,false);
 }
 function PlatformStd(x, y, onGround, gravity)
 {
@@ -204,9 +207,7 @@ var player =
 	platform: null,
 	jumpingheight: 1.5,
 	jump: function(){
-		console.log(1);
 		if(this.onGround){
-			console.log(2);
 			this.ySpeed = -this.jumpingheight;
 			this.onGround = false;
 			this.gravity = true;

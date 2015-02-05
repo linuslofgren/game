@@ -73,10 +73,12 @@ function calculate(c)
 	for(var i = 0; i<platforms.length; i++){
 		if((player.xPos >= platforms[i].xPos && player.xPos+player.img.width <= platforms[i].xPos+platforms[i].img.width)&&
 		(player.yPos+player.img.height >= platforms[i].yPos && player.yPos+player.img.height <= platforms[i].yPos+platforms[i].img.height)){
-			if(!player.onGround){
-				player.ySpeed = -player.ySpeed*0.5;
+			console.log(4);
+			if(!player.onGround&&!player.jumping){
+				player.onGround = true;
+				console.log(3);
 			}
-			if(Math.abs(player.ySpeed)<0.1&&!player.onGround){
+			if(player.onGround){
 				player.yPos = platforms[i].yPos-player.img.height;
 				player.ySpeed = 0;
 				player.gravity = false;
@@ -127,31 +129,57 @@ function PlatformStd(x, y, onGround, gravity)
 		ctx.drawImage(this.img, this.xPos,this.yPos);
 	}
 }
+function varinarrayadd(v, a) {
+	var is = false;
+	for(var i = 0; i<a.length; i++){
+	if(a[i] == v){
+			is = true;
+		}
+	}
+	if(!is){
+		keys.push(v);
+	}
+	return is;
+}
 var keys = [];
 function keypressed(e)
 {
-	
 	if(e.keyCode == 32){
-		var is;
-		for(var i = 0; i<keys.length; i++){
-			if(keys[i] == 32){
-				is = true;
-			}
+		if(!varinarrayadd(32, keys)){player.jump();}
+	}
+	else if(e.keyCode == 39){
+		if(!varinarrayadd(39,keys)){
+		player.xSpeed += 1;
 		}
-		if(!is){
-			keys.push(32);
-			player.jump();
+	}
+	else if(e.keyCode == 37){
+		if(!varinarrayadd(37,keys)){
+		player.xSpeed += -1;
 		}
 	}
 }
-function keyup() {
+function varinarray(e, a) {
+	var is = false;
+	for(var i = 0; i<a.length; i++){
+	if(a[i] == e){
+			is = true;
+		}
+	}
+	return is;
+}
+function varinarrayremove(e, a){
 	var is;
-	for(var i = 0; i<keys.length; i++){
-		if(keys[i] == 32){
+	for(var i = 0; i<a.length; i++){
+		if(a[i] == e.keyCode){
 			is = i;
 		}
 	}
-	keys.splice(is,1);
+	if(is != undefined){
+		a.splice(is,1);
+	}
+}
+function keyup(e) {
+	varinarrayremove(e, keys);
 }
 
 var player = 
@@ -164,11 +192,17 @@ var player =
 	gravity: true,
 	onGround: false,
 	gravMult: 1.0,
+	jumping: false,
+	friction: 0.4,
+	jumpingheight: 1.5,
 	jump: function(){
+		console.log(1);
 		if(this.onGround){
-			this.ySpeed = 5;
+			console.log(2);
+			this.ySpeed = -this.jumpingheight;
 			this.onGround = false;
 			this.gravity = true;
+			this.jumping = true;
 		}
 	},
 	draw: function(ctx)
@@ -177,6 +211,9 @@ var player =
 	},
 	calculate: function(c)
 	{
+		if(!varinarray(37,keys)&&!varinarray(39,keys)){this.xSpeed = this.xSpeed*this.friction;}
+		if(this.xSpeed < 1 && this.xSpeed > -1){this.xSpeed = 0;}
+		if(this.ySpeed > 0){this.jumping=false;}
 		this.xPos += (this.xSpeed)*c;
 		this.yPos += (this.ySpeed)*c;
 	}

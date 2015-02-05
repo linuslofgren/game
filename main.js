@@ -70,13 +70,15 @@ function calculate(c)
 			}
 		}
 	}
+	var on = false;
 	for(var i = 0; i<platforms.length; i++){
-		if((player.xPos >= platforms[i].xPos && player.xPos+player.img.width <= platforms[i].xPos+platforms[i].img.width)&&
+		if((player.xPos+player.img.width >= platforms[i].xPos && player.xPos <= platforms[i].xPos+platforms[i].img.width)&&
 		(player.yPos+player.img.height >= platforms[i].yPos && player.yPos+player.img.height <= platforms[i].yPos+platforms[i].img.height)){
 			console.log(4);
 			if(!player.onGround&&!player.jumping){
 				player.onGround = true;
 				console.log(3);
+				on = true;
 			}
 			if(player.onGround){
 				player.yPos = platforms[i].yPos-player.img.height;
@@ -85,6 +87,10 @@ function calculate(c)
 				player.onGround = true;
 			}
 		}
+	}
+	if(!on){
+		player.onGround=false;
+		player.gravity = true;
 	}
 	player.calculate(c);
 }
@@ -99,9 +105,10 @@ function draw(ctx)
 	}
 }
 
-//All platforms in a list.
-
-//The platform constructor.
+function loadlevel(level){
+	new PlatformStd(100,150,false,false);
+	new PlatformStd(100,250,false,false);
+}
 function PlatformStd(x, y, onGround, gravity)
 {
 	this.xPos = x;
@@ -118,7 +125,7 @@ function PlatformStd(x, y, onGround, gravity)
 	//Shortcut for having a platform on the ground, the y parameter will be overlooked.
 	if(onGround)
 	{
-		this.yPos = 500-100;
+		this.yPos = 500-20;
 	}
 	
 	this.calculate= function()
@@ -144,8 +151,8 @@ function varinarrayadd(v, a) {
 var keys = [];
 function keypressed(e)
 {
-	if(e.keyCode == 32){
-		if(!varinarrayadd(32, keys)){player.jump();}
+	if(e.keyCode == 38){
+		if(!varinarrayadd(38, keys)){player.jump();}
 	}
 	else if(e.keyCode == 39){
 		if(!varinarrayadd(39,keys)){
@@ -194,6 +201,7 @@ var player =
 	gravMult: 1.0,
 	jumping: false,
 	friction: 0.4,
+	platform: null,
 	jumpingheight: 1.5,
 	jump: function(){
 		console.log(1);
@@ -220,6 +228,6 @@ var player =
 	
 }
 objects.push(player);
-var my_plaform = new PlatformStd(10,10,true,false);
+loadlevel();
 }
 window.onload = init;

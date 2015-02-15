@@ -13,6 +13,7 @@
 		new self.PlatformStd(0,350,false,false);
 		new self.PlatformStd(400,450,false,false);
 		self.loop();
+		self.loop();
 	}
 	self.draw = function()
 {

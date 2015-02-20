@@ -11,7 +11,15 @@
 		jumping: false,
 		friction: 0.4,
 		platform: null,
+		health: 100,
+		dam: false,
+		damv: 0,
 		jumpingheight: 1.5,
+		damage: function(d) {
+			this.dam = true;
+			this.damv += d;
+			this.health -= this.damv*0.025*self.timeCorrection;
+		},
 		jump: function(){
 			if(this.onGround){
 				this.ySpeed = -this.jumpingheight;
@@ -21,6 +29,8 @@
 			}
 		},
 		draw: function(ctx){
+			self.showText(Math.round(this.health),10,20);
+			self.ctx.globalAlpha = 1;
 			self.ctx.drawImage(this.img,this.xPos,this.yPos);
 		},
 		calculate: function(){
@@ -36,7 +46,18 @@
 				this.xPos = self.width-this.img.height;
 			}
 			if(this.yPos+this.img.height > self.height){
-				self.loadlevel();
+				self.loadlevel(self.level);
+			}
+			if(typeof self.platform == 'undefined'){
+				this.dam = false;
+				this.damv = 0;
+			}
+			else if(typeof self.platform.lethal == 'undefined'){
+				this.dam = false;
+				this.damv = 0;
+			}
+			if(this.health <= 0.4999){
+				self.loadlevel(self.level);
 			}
 		}
 		

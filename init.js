@@ -2,8 +2,8 @@
 	var delay = delay;
 	var canvas = document.getElementById("canvas");
 	self.ctx = canvas.getContext("2d");
-	canvas.width = 500;
-	canvas.height = 500;
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
 	self.width = canvas.width;
 	self.height = canvas.height;
 	self.platformImage = new Image();
@@ -13,4 +13,11 @@
 	self.platforms = [];
 	self.objects = [self.platforms];
 	self.delay = 5;
+	self.looping = false;
+	self.loopId;
+	self.levels = [];
+	self.level = undefined;
+	self.lastTime = undefined;
+	self.platform = undefined;
+	self.oneSecond = false;
 })(window.game = window.game || {});

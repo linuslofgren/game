@@ -7,11 +7,11 @@
 	self.width = canvas.width;
 	self.height = canvas.height;
 	self.platformImage = new Image();
-	self.platformImage.src = "platform.png";
+	self.platformImage.src = "pictures/platform.png";
 	self.playerImage = new Image();
-	self.playerImage.src = "player.png";
+	self.playerImage.src = "pictures/player.png";
 	self.heart = new Image();
-	self.heart.src = "heart.png";
+	self.heart.src = "pictures/heart.png";
 	self.platforms = [];
 	self.objects = [self.platforms];
 	self.delay = 5;

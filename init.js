@@ -10,6 +10,8 @@
 	self.platformImage.src = "platform.png";
 	self.playerImage = new Image();
 	self.playerImage.src = "player.png";
+	self.heart = new Image();
+	self.heart.src = "heart.png";
 	self.platforms = [];
 	self.objects = [self.platforms];
 	self.delay = 5;
@@ -20,4 +22,9 @@
 	self.lastTime = undefined;
 	self.platform = undefined;
 	self.oneSecond = false;
+	self.time = 0;
+	self.lifes = 5;
+	self.a = 0;
+	self.timestamp;
+	self.save;
 })(window.game = window.game || {});

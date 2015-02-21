@@ -84,12 +84,32 @@
 		self.player.calculate();
 		for(var i = 0; i<self.enemies.length; i++){
 			var me = self.enemies[i];
-			me.calculate();
 			if(me.gravity){
 				if(typeof me.ySpeed == "number"){
 					me.ySpeed += 0.0098*me.gravMult*self.timeCorrection;
 				}
 			}
+			me.calculate();
+			var a = false;
+		for(var i = 0; i<self.platforms.length; i++){
+			if((me.xPos+me.img.width >= self.platforms[i].xPos && me.xPos <= self.platforms[i].xPos+self.platforms[i].img.width)&&
+			(me.yPos+me.img.height >= self.platforms[i].yPos && me.yPos+me.img.height <= self.platforms[i].yPos+self.platforms[i].img.height)){
+				if(!me.onGround&&!me.jumping){
+					me.onGround = true;
+					a = true;
+				}
+				if(me.onGround){
+					me.yPos = self.platforms[i].yPos-me.img.height;
+					me.ySpeed = 0;
+					me.gravity = false;
+					me.onGround = true;
+				}
+			}
+		}
+		if(!a){
+			me.onGround=false;
+			me.gravity = true;
+		}
 		}
 		var on = false;
 		for(var i = 0; i<self.platforms.length; i++){

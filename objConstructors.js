@@ -46,10 +46,14 @@
 		this.gravMult = 1;
 		this.gravity = true;
 		this.img = self.images.enemy;
-		this.xPos = self.platforms[startPlatform].xPos-60;
+		this.xPos = self.platforms[startPlatform].xPos+50;
 		this.yPos = self.platforms[startPlatform].yPos-50;
 		this.xSpeed = 0;
 		this.ySpeed = 0;
+		this.friction = 0.4;
+		this.jumpingheight = 1.5;
+		this.onGround = false;
+		this.gravity = true;
 		function hightwidth(img) {
 			this.width = img.width;
 			this.height = img.height;
@@ -58,8 +62,20 @@
 		this.draw = function(){
 			self.ctx.drawImage(this.img, this.xPos,this.yPos);
 		}
+		this.jump = function() {
+			if(this.onGround){
+				this.ySpeed = -this.jumpingheight;
+				this.onGround = false;
+				this.gravity = true;
+				this.jumping = true;
+			}
+		}
 		this.calculate = function() {
+			if(!self.varinarray(37,self.keys)&&!self.varinarray(39,self.keys)){this.xSpeed = this.xSpeed*this.friction;}
 			this.yPos += this.ySpeed*self.timeCorrection;
+			this.xPos += this.xSpeed*self.timeCorrection;
+			if(this.xSpeed < 1 && this.xSpeed > -1){this.xSpeed = 0;}
+			if(this.ySpeed > 0){this.jumping=false;}
 		}
 		self.enemies.push(this);
 	}

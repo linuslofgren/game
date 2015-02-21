@@ -6,14 +6,20 @@
 	canvas.height = window.innerHeight;
 	self.width = canvas.width;
 	self.height = canvas.height;
-	self.platformImage = new Image();
-	self.platformImage.src = "pictures/platform.png";
-	self.playerImage = new Image();
-	self.playerImage.src = "pictures/player.png";
-	self.heart = new Image();
-	self.heart.src = "pictures/heart.png";
+	self.images = {
+		platformImage: new Image(),
+		playerImage: new Image(),
+		heart: new Image(),
+		enemy: new Image()
+	};
+	self.images.heart.src = "pictures/heart.png";
+	self.images.playerImage.src = "pictures/player.png";
+	self.images.platformImage.src = "pictures/platform.png";
+	self.images.enemy.src = "pictures/enemy.png";
 	self.platforms = [];
-	self.objects = [self.platforms];
+	self.enemies = [];
+	self.objects = [];
+	self.timer = {};
 	self.delay = 5;
 	self.looping = false;
 	self.loopId;
@@ -21,10 +27,7 @@
 	self.level = undefined;
 	self.lastTime = undefined;
 	self.platform = undefined;
-	self.oneSecond = false;
-	self.time = 0;
 	self.lifes = 5;
 	self.a = 0;
 	self.timestamp;
-	self.save;
 })(window.game = window.game || {});

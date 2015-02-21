@@ -4,7 +4,7 @@
 		yPos: 50,
 		xSpeed: 0,
 		ySpeed: 0,
-		img: self.playerImage,
+		img: self.images.playerImage,
 		gravity: true,
 		onGround: false,
 		gravMult: 1.0,
@@ -38,6 +38,7 @@
 			if(self.lifes<=0){
 				self.stop(true);
 			}
+			this.ySpeed += 0.0098*this.gravMult*self.timeCorrection;
 			if(!self.varinarray(37,self.keys)&&!self.varinarray(39,self.keys)){this.xSpeed = this.xSpeed*this.friction;}
 			if(this.xSpeed < 1 && this.xSpeed > -1){this.xSpeed = 0;}
 			if(this.ySpeed > 0){this.jumping=false;}

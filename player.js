@@ -35,7 +35,7 @@
 		},
 		calculate: function(){
 			if(self.lifes<=0){
-				self.stop(true);
+				self.restart();
 			}
 			this.ySpeed += 0.0098*this.gravMult*self.timeCorrection;
 			if(!self.varinarray(37,self.keys)&&!self.varinarray(39,self.keys)){this.xSpeed = this.xSpeed*this.friction;}

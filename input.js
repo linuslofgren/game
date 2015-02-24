@@ -14,18 +14,16 @@
 	}
 	self.keypressed = function(e){
 		if(e.keyCode == 38){
-			if(!self.varinarrayadd(38, self.keys) && self.looping){self.player.jump();self.enemies[0].jump();}
+			if(!self.varinarrayadd(38, self.keys) && self.looping){self.player.jump();}
 		}
 		else if(e.keyCode == 39){
 			if(!self.varinarrayadd(39,self.keys)){
-			self.player.xSpeed += 1;
-			self.enemies[0].xSpeed += 1;
+			self.player.xSpeed = 1;
 			}
 		}
 		else if(e.keyCode == 37){
 			if(!self.varinarrayadd(37, self.keys)){
-			self.player.xSpeed += -1;
-			self.enemies[0].xSpeed += -1;
+			self.player.xSpeed = -1;
 			}
 		}
 		else if(e.keyCode == 27){

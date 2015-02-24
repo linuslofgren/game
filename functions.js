@@ -13,7 +13,7 @@
 			new self.PlatformStd(250,500,false,false,true);
 			new self.PlatformStd(0,500,false,false);
 			new self.PlatformStd(400,600,false,false,false,undefined,true);
-			new self.enemy(3);
+			new self.enemy(7);
 			self.play();
 		}
 		self.levels[1] = function() {
@@ -91,26 +91,27 @@
 			}
 			me.calculate();
 			var a = false;
-		for(var i = 0; i<self.platforms.length; i++){
-			if((me.xPos+me.img.width >= self.platforms[i].xPos && me.xPos <= self.platforms[i].xPos+self.platforms[i].img.width)&&
-			(me.yPos+me.img.height >= self.platforms[i].yPos && me.yPos+me.img.height <= self.platforms[i].yPos+self.platforms[i].img.height)){
-				if(!me.onGround&&!me.jumping){
-					me.onGround = true;
-					a = true;
-				}
-				if(me.onGround){
-					me.yPos = self.platforms[i].yPos-me.img.height;
-					me.ySpeed = 0;
-					me.gravity = false;
-					me.onGround = true;
+			for(var i = 0; i<self.platforms.length; i++){
+				if((me.xPos+me.img.width >= self.platforms[i].xPos && me.xPos <= self.platforms[i].xPos+self.platforms[i].img.width)&&
+				(me.yPos+me.img.height >= self.platforms[i].yPos && me.yPos+me.img.height <= self.platforms[i].yPos+self.platforms[i].img.height)){
+					if(!me.onGround&&!me.jumping){
+						me.onGround = true;
+						a = true;
+					}
+					if(me.onGround){
+						me.yPos = self.platforms[i].yPos-me.img.height;
+						me.ySpeed = 0;
+						me.gravity = false;
+						me.onGround = true;
+					}
 				}
 			}
-		}
 		if(!a){
 			me.onGround=false;
 			me.gravity = true;
 		}
 		}
+		self.AI();
 		var on = false;
 		for(var i = 0; i<self.platforms.length; i++){
 			if((self.player.xPos+self.player.img.width >= self.platforms[i].xPos && self.player.xPos <= self.platforms[i].xPos+self.platforms[i].img.width)&&
@@ -131,6 +132,11 @@
 				}
 			}
 		}
+		for(var i = 0; i<self.enemies.length; i++){
+			if((self.player.xPos+self.player.img.width >= self.enemies[i].xPos && self.player.xPos <= self.enemies[i].xPos+self.enemies[i].img.width)&&
+			(self.player.yPos+self.player.img.height >= self.enemies[i].yPos && self.player.yPos <= self.enemies[i].yPos+self.enemies[i].img.height)){
+				self.restart();
+			}}
 		if(!on){
 			self.player.onGround=false;
 			self.player.gravity = true;

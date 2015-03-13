@@ -16,18 +16,7 @@
 	self.images.playerImage.src = "pictures/player.png";
 	self.images.platformImage.src = "pictures/platform.png";
 	self.images.enemy.src = "pictures/enemy.png";
-	self.platforms = [];
-	self.enemies = [];
-	self.objects = [];
-	self.timer = {};
 	self.delay = 5;
 	self.looping = false;
-	self.loopId;
-	self.levels = [];
-	self.level = undefined;
-	self.lastTime = undefined;
-	self.platform = undefined;
-	self.lifes = 5;
-	self.a = 0;
 	self.timestamp;
 })(window.game = window.game || {});

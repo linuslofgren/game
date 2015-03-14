@@ -17,10 +17,21 @@
 			self.player.jump();
 		}
 		else if(e.keyCode == 39){
+<<<<<<< HEAD
 			self.varinarrayadd(39,self.keys)
 		}
 		else if(e.keyCode == 37){
 			self.varinarrayadd(37, self.keys);
+=======
+			if(!self.varinarrayadd(39,self.keys)){
+			self.player.xSpeed = 1;
+			}
+		}
+		else if(e.keyCode == 37){
+			if(!self.varinarrayadd(37, self.keys)){
+			self.player.xSpeed = -1;
+			}
+>>>>>>> origin/master
 		}
 		else if(e.keyCode == 27){
 			if(self.looping){

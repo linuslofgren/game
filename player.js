@@ -4,7 +4,7 @@
 		yPos: 50,
 		xSpeed: 0,
 		ySpeed: 0,
-		img: self.images.playerImage,
+		img: self.playerImage,
 		gravity: true,
 		onGround: false,
 		gravMult: 1.0,
@@ -14,6 +14,9 @@
 		health: 100,
 		dam: false,
 		damv: 0,
+		jumpbool: false,
+		jumpval: 0,
+		jumpmax: 5,
 		jumpingheight: 1.5,
 		damage: function(d) {
 			this.dam = true;
@@ -21,11 +24,16 @@
 			this.health -= this.damv*0.025*self.timeCorrection;
 		},
 		jump: function(){
+<<<<<<< HEAD
 			if(this.onGround){
 				this.ySpeed = -this.jumpingheight;
 				this.gravity = true;
 				this.jumping = true;
 			}
+=======
+			this.jumpbool = true;
+			
+>>>>>>> origin/master
 		},
 		draw: function(ctx){
 			self.showText("Health: " + Math.round(this.health) + "%",10,20);
@@ -34,10 +42,21 @@
 			self.showText("Level " + (self.level+1),500,20);
 		},
 		calculate: function(){
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 			if(self.lifes<=0){
 				self.stop(true);
 			}
+<<<<<<< HEAD
+<<<<<<< HEAD
+			if(!self.varinarray(37,self.keys)&&!self.varinarray(39,self.keys)){this.xSpeed = this.xSpeed*this.friction;}
+=======
+			if(self.lifes<=0){
+				self.restart();
+			}
 			this.ySpeed += 0.0098*this.gravMult*self.timeCorrection;
+<<<<<<< HEAD
 			switch(self.keys[0]){
 				case 37:
 					this.xSpeed = -1;
@@ -48,6 +67,31 @@
 				default:
 					this.xSpeed = 0;
 			}
+=======
+=======
+>>>>>>> parent of 737b0f6... Enemies
+=======
+>>>>>>> parent of 737b0f6... Enemies
+			if(!self.varinarray(37,self.keys)&&!self.varinarray(39,self.keys)){this.xSpeed = this.xSpeed*this.friction;}
+			if(this.jumpbool){
+				if(this.jumpval<this.jumpmax){
+					if(this.onGround){
+						this.ySpeed = -this.jumpingheight;
+						this.onGround = false;
+						this.gravity = true;
+						this.jumping = true;
+						this.jumpbool = false;
+						this.jumpval = 0;
+					}
+				}
+				else{
+					this.jumpval = 0;
+					this.jumpbool = false;
+				}
+				this.jumpval ++;
+			}
+>>>>>>> parent of 0557083... 1
+>>>>>>> origin/master
 			if(this.xSpeed < 1 && this.xSpeed > -1){this.xSpeed = 0;}
 			if(this.ySpeed > 0){this.jumping=false;}
 			this.xPos += (this.xSpeed)*self.timeCorrection;
@@ -77,6 +121,10 @@
 				self.lifes-=1;
 				self.loadlevel(self.level);
 			}
+<<<<<<< HEAD
+>>>>>>> parent of 737b0f6... Enemies
+=======
+>>>>>>> parent of 0557083... 1
 		}
 		
 	}

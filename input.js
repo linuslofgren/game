@@ -8,23 +8,19 @@
 			}
 		}
 		if(!is){
-			self.keys.push(v);
+			self.keys.unshift(v);
 		}
 		return is;
 	}
 	self.keypressed = function(e){
 		if(e.keyCode == 38){
-			if(!self.varinarrayadd(38, self.keys) && self.looping){self.player.jump();}
+			self.player.jump();
 		}
 		else if(e.keyCode == 39){
-			if(!self.varinarrayadd(39,self.keys)){
-			self.player.xSpeed += 1;
-			}
+			self.varinarrayadd(39,self.keys)
 		}
 		else if(e.keyCode == 37){
-			if(!self.varinarrayadd(37, self.keys)){
-			self.player.xSpeed += -1;
-			}
+			self.varinarrayadd(37, self.keys);
 		}
 		else if(e.keyCode == 27){
 			if(self.looping){

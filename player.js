@@ -23,7 +23,6 @@
 		jump: function(){
 			if(this.onGround){
 				this.ySpeed = -this.jumpingheight;
-				this.onGround = false;
 				this.gravity = true;
 				this.jumping = true;
 			}
@@ -39,7 +38,16 @@
 				self.stop(true);
 			}
 			this.ySpeed += 0.0098*this.gravMult*self.timeCorrection;
-			if(!self.varinarray(37,self.keys)&&!self.varinarray(39,self.keys)){this.xSpeed = this.xSpeed*this.friction;}
+			switch(self.keys[0]){
+				case 37:
+					this.xSpeed = -1;
+					break;
+				case 39:
+					this.xSpeed = 1;
+					break;
+				default:
+					this.xSpeed = 0;
+			}
 			if(this.xSpeed < 1 && this.xSpeed > -1){this.xSpeed = 0;}
 			if(this.ySpeed > 0){this.jumping=false;}
 			this.xPos += (this.xSpeed)*self.timeCorrection;

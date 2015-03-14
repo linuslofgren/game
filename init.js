@@ -30,4 +30,10 @@
 	self.lifes = 5;
 	self.a = 0;
 	self.timestamp;
+	self.keys = {
+		right:false,
+		left:false,
+		up:false,
+		down: false
+	}
 })(window.game = window.game || {});

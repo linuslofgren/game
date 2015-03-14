@@ -77,6 +77,7 @@
 >>>>>>> parent of 0557083... 1
 	self.timestamp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	self.keys = {
 		right:false,
 		left:false,
@@ -86,4 +87,6 @@
 =======
 	self.save;
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 2fe194d... Good Input
 })(window.game = window.game || {});

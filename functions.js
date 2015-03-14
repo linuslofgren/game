@@ -19,6 +19,7 @@
 			new self.PlatformStd(0,500,false,false);
 			new self.PlatformStd(400,600,false,false,false,undefined,true);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			//new self.enemy(3);
 =======
 			new self.enemy(7);
@@ -38,6 +39,9 @@
 =======
 >>>>>>> parent of 737b0f6... Enemies
 >>>>>>> origin/master
+=======
+			new self.enemy(3);
+>>>>>>> parent of 2fe194d... Good Input
 			self.play();
 		}
 		self.levels[1] = function() {
@@ -243,9 +247,11 @@
 		for(var i = 0; i<self.platforms.length; i++){
 			if((self.player.xPos+self.player.img.width >= self.platforms[i].xPos && self.player.xPos <= self.platforms[i].xPos+self.platforms[i].img.width)&&
 			(self.player.yPos+self.player.img.height >= self.platforms[i].yPos && self.player.yPos+self.player.img.height <= self.platforms[i].yPos+self.platforms[i].img.height)){
+				if(!self.player.onGround&&!self.player.jumping){
 					self.player.onGround = true;
 					on = true;
 					self.platform = self.platforms[i];
+				}
 				if(self.player.onGround){
 					self.player.yPos = self.platforms[i].yPos-self.player.img.height;
 					self.player.ySpeed = 0;

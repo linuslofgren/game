@@ -27,6 +27,7 @@
 <<<<<<< HEAD
 			if(this.onGround){
 				this.ySpeed = -this.jumpingheight;
+				this.onGround = false;
 				this.gravity = true;
 				this.jumping = true;
 			}
@@ -56,6 +57,7 @@
 				self.restart();
 			}
 			this.ySpeed += 0.0098*this.gravMult*self.timeCorrection;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			switch(self.keys[0]){
 				case 37:
@@ -92,6 +94,9 @@
 			}
 >>>>>>> parent of 0557083... 1
 >>>>>>> origin/master
+=======
+			if(!self.varinarray(37,self.keys)&&!self.varinarray(39,self.keys)){this.xSpeed = this.xSpeed*this.friction;}
+>>>>>>> parent of 2fe194d... Good Input
 			if(this.xSpeed < 1 && this.xSpeed > -1){this.xSpeed = 0;}
 			if(this.ySpeed > 0){this.jumping=false;}
 			this.xPos += (this.xSpeed)*self.timeCorrection;

@@ -8,15 +8,16 @@
 			}
 		}
 		if(!is){
-			self.keys.unshift(v);
+			self.keys.push(v);
 		}
 		return is;
 	}
 	self.keypressed = function(e){
 		if(e.keyCode == 38){
-			self.player.jump();
+			if(!self.varinarrayadd(38, self.keys) && self.looping){self.player.jump();}
 		}
 		else if(e.keyCode == 39){
+<<<<<<< HEAD
 <<<<<<< HEAD
 			self.varinarrayadd(39,self.keys)
 		}
@@ -32,6 +33,16 @@
 			self.player.xSpeed = -1;
 			}
 >>>>>>> origin/master
+=======
+			if(!self.varinarrayadd(39,self.keys)){
+			self.player.xSpeed += 1;
+			}
+		}
+		else if(e.keyCode == 37){
+			if(!self.varinarrayadd(37, self.keys)){
+			self.player.xSpeed += -1;
+			}
+>>>>>>> parent of 2fe194d... Good Input
 		}
 		else if(e.keyCode == 27){
 			if(self.looping){

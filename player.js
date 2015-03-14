@@ -28,15 +28,43 @@
 			
 		},
 		draw: function(ctx){
+			self.showText("Health: " + Math.round(this.health) + "%",10,20);
+			self.ctx.globalAlpha = 1;
 			self.ctx.drawImage(this.img,this.xPos,this.yPos);
+			self.showText("Level " + (self.level+1),500,20);
 		},
 		calculate: function(){
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 			if(self.lifes<=0){
 				self.stop(true);
 			}
 			if(!self.varinarray(37,self.keys)&&!self.varinarray(39,self.keys)){this.xSpeed = this.xSpeed*this.friction;}
+=======
+			if(self.lifes<=0){
+				self.restart();
+			}
+			this.ySpeed += 0.0098*this.gravMult*self.timeCorrection;
+			if(!self.varinarray(37,self.keys)&&!self.varinarray(39,self.keys)){this.xSpeed = this.xSpeed*this.friction;}
+			if(this.jumpbool){
+				if(this.jumpval<this.jumpmax){
+					if(this.onGround){
+						this.ySpeed = -this.jumpingheight;
+						this.onGround = false;
+						this.gravity = true;
+						this.jumping = true;
+						this.jumpbool = false;
+						this.jumpval = 0;
+					}
+				}
+				else{
+					this.jumpval = 0;
+					this.jumpbool = false;
+				}
+				this.jumpval ++;
+			}
+>>>>>>> parent of 0557083... 1
 			if(this.xSpeed < 1 && this.xSpeed > -1){this.xSpeed = 0;}
 			if(this.ySpeed > 0){this.jumping=false;}
 			this.xPos += (this.xSpeed)*self.timeCorrection;
@@ -66,7 +94,12 @@
 				self.lifes-=1;
 				self.loadlevel(self.level);
 			}
+<<<<<<< HEAD
 >>>>>>> parent of 737b0f6... Enemies
+=======
+>>>>>>> parent of 0557083... 1
 		}
+		
 	}
+	self.objects.push(self.player);
 })(window.game = window.game || {});

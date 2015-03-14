@@ -2,7 +2,7 @@
 	self.PlatformStd = function(x, y, onGround, gravity, lethal, damage, finish){
 		this.xPos = x;
 		this.yPos = y;
-		this.img = self.images.platformImage;
+		this.img = self.platformImage;
 		function hightwidth(img) {
 			this.width = img.width;
 			this.height = img.height;
@@ -42,6 +42,7 @@
 			}
 		}
 	}
+<<<<<<< HEAD
 	self.enemy = function(startPlatform) {
 		this.gravMult = 1;
 		this.gravity = true;
@@ -79,4 +80,6 @@
 		}
 		self.enemies.push(this);
 	}
+=======
+>>>>>>> parent of 737b0f6... Enemies
 })(window.game = window.game || {});

@@ -4,7 +4,7 @@
 		yPos: 50,
 		xSpeed: 0,
 		ySpeed: 0,
-		img: self.images.playerImage,
+		img: self.playerImage,
 		gravity: true,
 		onGround: false,
 		gravMult: 1.0,
@@ -31,6 +31,42 @@
 			self.ctx.drawImage(this.img,this.xPos,this.yPos);
 		},
 		calculate: function(){
+<<<<<<< HEAD
+=======
+			if(self.lifes<=0){
+				self.stop(true);
+			}
+			if(!self.varinarray(37,self.keys)&&!self.varinarray(39,self.keys)){this.xSpeed = this.xSpeed*this.friction;}
+			if(this.xSpeed < 1 && this.xSpeed > -1){this.xSpeed = 0;}
+			if(this.ySpeed > 0){this.jumping=false;}
+			this.xPos += (this.xSpeed)*self.timeCorrection;
+			this.yPos += (this.ySpeed)*self.timeCorrection;
+			if(this.xPos < 0){
+				this.xPos = 0;
+			}
+			if(this.xPos > self.width-this.img.height){
+				this.xPos = self.width-this.img.height;
+			}
+			if(this.yPos+this.img.height > self.height){
+				self.lifes-=1;
+				self.loadlevel(self.level);
+			}
+			if(typeof self.platform == 'undefined'){
+				this.dam = false;
+				this.damv = 0;
+			}
+			else if(typeof self.platform.lethal == 'undefined'){
+				this.dam = false;
+				this.damv = 0;
+			}
+			else if(self.platform.finish){
+				self.loadlevel(self.level+1);
+			}
+			if(this.health <= 0.4999){
+				self.lifes-=1;
+				self.loadlevel(self.level);
+			}
+>>>>>>> parent of 737b0f6... Enemies
 		}
 	}
 })(window.game = window.game || {});

@@ -41,12 +41,15 @@
 				self.stop(true);
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if(!self.varinarray(37,self.keys)&&!self.varinarray(39,self.keys)){this.xSpeed = this.xSpeed*this.friction;}
 =======
 			if(self.lifes<=0){
 				self.restart();
 			}
 			this.ySpeed += 0.0098*this.gravMult*self.timeCorrection;
+=======
+>>>>>>> parent of 737b0f6... Enemies
 =======
 >>>>>>> parent of 737b0f6... Enemies
 			if(!self.varinarray(37,self.keys)&&!self.varinarray(39,self.keys)){this.xSpeed = this.xSpeed*this.friction;}

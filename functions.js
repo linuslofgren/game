@@ -9,6 +9,7 @@
 			self.player.xSpeed = 0;
 			self.player.ySpeed = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			new self.PlatformStd(50,300,false,false);
 			new self.PlatformStd(100,400,false,false);
 			new self.PlatformStd(100,300,false,false);
@@ -19,6 +20,8 @@
 			new self.PlatformStd(400,600,false,false,false,undefined,true);
 			new self.enemy(7);
 =======
+=======
+>>>>>>> parent of 737b0f6... Enemies
 			new self.PlatformStd(50,150,false,false);
 			new self.PlatformStd(100,250,false,false);
 			new self.PlatformStd(100,150,false,false);
@@ -27,6 +30,9 @@
 			new self.PlatformStd(250,350,false,false,true);
 			new self.PlatformStd(0,350,false,false);
 			new self.PlatformStd(400,450,false,false,false,undefined,true);
+<<<<<<< HEAD
+>>>>>>> parent of 737b0f6... Enemies
+=======
 >>>>>>> parent of 737b0f6... Enemies
 			self.play();
 		}
@@ -93,6 +99,7 @@
 			for(var i = 0;i<self.platforms.length;i++){
 				self.platforms[i].draw();
 			}
+<<<<<<< HEAD
 		}
 	}
 	self.calculate = function(){
@@ -177,11 +184,14 @@
 			for(var i = 0;i<self.platforms.length;i++){
 				self.platforms[i].draw();
 			}
+=======
+>>>>>>> parent of 737b0f6... Enemies
 		}
 	}
 	self.calculate = function(){
 		for(var i = 0; i<self.objects.length; i++){
 			var me = self.objects[i];
+<<<<<<< HEAD
 =======
 		self.player.calculate();
 		for(var i = 0; i<self.enemies.length; i++){
@@ -190,6 +200,8 @@
 =======
 		for(var i = 0; i<self.objects.length; i++){
 			var me = self.objects[i];
+>>>>>>> parent of 737b0f6... Enemies
+=======
 >>>>>>> parent of 737b0f6... Enemies
 			if(me.gravity){
 				if(typeof me.ySpeed == "number"){
@@ -258,10 +270,14 @@
 		}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		self.player.calculate();
 >>>>>>> parent of 737b0f6... Enemies
 =======
 >>>>>>> parent of 0557083... 1
+=======
+		self.player.calculate();
+>>>>>>> parent of 737b0f6... Enemies
 =======
 		self.player.calculate();
 >>>>>>> parent of 737b0f6... Enemies
@@ -282,7 +298,11 @@
 		if(!self.looping){
 			self.looping = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> parent of 0557083... 1
+=======
+			self.loopId = window.requestAnimationFrame(self.loop);
+>>>>>>> parent of 737b0f6... Enemies
 =======
 			self.loopId = window.requestAnimationFrame(self.loop);
 >>>>>>> parent of 737b0f6... Enemies
@@ -306,10 +326,14 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		window.cancelAnimationFrame(self.loopId);
 =======
 >>>>>>> parent of 0557083... 1
+=======
+		window.cancelAnimationFrame(self.loopId);
+>>>>>>> parent of 737b0f6... Enemies
 =======
 		window.cancelAnimationFrame(self.loopId);
 >>>>>>> parent of 737b0f6... Enemies
@@ -321,6 +345,7 @@
 	}
 	self.stop = function(fail) {
 		if(fail){
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 			self.save = self.timestamp;
@@ -372,6 +397,9 @@
 =======
 			self.save = self.timestamp;
 >>>>>>> parent of 737b0f6... Enemies
+=======
+			self.save = self.timestamp;
+>>>>>>> parent of 737b0f6... Enemies
 			self.lastTime = undefined;
 			self.looping = false;
 			window.cancelAnimationFrame(self.loopId);
@@ -397,6 +425,26 @@
 						},2000/2);
 					},3000/2);
 			},5500/2);},500/2);
+<<<<<<< HEAD
+=======
+		}
+	}
+	self.showTextTimer=function(i,text){
+		if(text==1){
+			setTimeout(function(){
+				self.showTextAdv(self.text[i],30*i,self.height/2-30,"white", "30px Miriam Fixed");
+			},100/2*i);
+		}
+		else if(text==2){
+			setTimeout(function(){
+				self.showTextAdv(self.text2[i],30*i,self.height/2+30,"white", "30px Miriam Fixed");
+			},100/2*i);
+		}
+		else if(text == 3){
+			setTimeout(function(){
+				self.showTextAdv(self.text3[i],30*i,self.height/2+90,"white", "30px Miriam Fixed");
+			},100/2*i);
+>>>>>>> parent of 737b0f6... Enemies
 		}
 	}
 	self.showTextTimer=function(i,text){
@@ -445,6 +493,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		self.loopId = window.requestAnimationFrame(self.loop);
 	}
 	self.start = function() {
@@ -475,6 +524,8 @@
 		self.loadlevel(0);
 		self.timer.startTimer();
 >>>>>>> parent of 0557083... 1
+=======
+>>>>>>> parent of 737b0f6... Enemies
 =======
 >>>>>>> parent of 737b0f6... Enemies
 	}

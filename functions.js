@@ -20,6 +20,7 @@
 			new self.PlatformStd(400,600,false,false,false,undefined,true);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 			//new self.enemy(3);
 =======
 			new self.enemy(7);
@@ -39,6 +40,9 @@
 =======
 >>>>>>> parent of 737b0f6... Enemies
 >>>>>>> origin/master
+=======
+			new self.enemy(3);
+>>>>>>> parent of 2fe194d... Good Input
 =======
 			new self.enemy(3);
 >>>>>>> parent of 2fe194d... Good Input

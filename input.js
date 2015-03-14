@@ -19,6 +19,7 @@
 		else if(e.keyCode == 39){
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 			self.varinarrayadd(39,self.keys)
 		}
 		else if(e.keyCode == 37){
@@ -33,6 +34,16 @@
 			self.player.xSpeed = -1;
 			}
 >>>>>>> origin/master
+=======
+			if(!self.varinarrayadd(39,self.keys)){
+			self.player.xSpeed += 1;
+			}
+		}
+		else if(e.keyCode == 37){
+			if(!self.varinarrayadd(37, self.keys)){
+			self.player.xSpeed += -1;
+			}
+>>>>>>> parent of 2fe194d... Good Input
 =======
 			if(!self.varinarrayadd(39,self.keys)){
 			self.player.xSpeed += 1;

@@ -78,6 +78,7 @@
 	self.timestamp;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	self.keys = {
 		right:false,
 		left:false,
@@ -87,6 +88,8 @@
 =======
 	self.save;
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 2fe194d... Good Input
 =======
 >>>>>>> parent of 2fe194d... Good Input
 })(window.game = window.game || {});

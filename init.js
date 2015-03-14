@@ -7,6 +7,7 @@
 	self.width = canvas.width;
 	self.height = canvas.height;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	self.images = {
 		platformImage: new Image(),
 		playerImage: new Image(),
@@ -17,10 +18,16 @@
 	self.images.playerImage.src = "pictures/player.png";
 	self.images.platformImage.src = "pictures/platform.png";
 	self.images.enemy.src = "pictures/enemy.png";
+=======
+	self.platformImage = new Image();
+	self.platformImage.src = "pictures/platform.png";
+	self.playerImage = new Image();
+	self.playerImage.src = "pictures/player.png";
+	self.heart = new Image();
+	self.heart.src = "pictures/heart.png";
+>>>>>>> parent of 737b0f6... Enemies
 	self.platforms = [];
-	self.enemies = [];
-	self.objects = [];
-	self.timer = {};
+	self.objects = [self.platforms];
 	self.delay = 5;
 	self.looping = false;
 <<<<<<< HEAD
@@ -43,12 +50,17 @@
 	self.lastTime = undefined;
 	self.platform = undefined;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	self.oneSecond = false;
 	self.time = 0;
 	self.lifes = 5;
 	self.a = 0;
 >>>>>>> parent of 737b0f6... Enemies
 =======
+=======
+	self.oneSecond = false;
+	self.time = 0;
+>>>>>>> parent of 737b0f6... Enemies
 	self.lifes = 5;
 	self.a = 0;
 >>>>>>> parent of 0557083... 1

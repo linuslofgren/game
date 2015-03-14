@@ -4,10 +4,11 @@
 =======
 	self.loadlevels = (function() {
 		self.levels[0] = function() {
-			self.player.xPos = 60;
-			self.player.yPos = 160;
+			self.player.xPos = 55;
+			self.player.yPos = 10;
 			self.player.xSpeed = 0;
 			self.player.ySpeed = 0;
+<<<<<<< HEAD
 			new self.PlatformStd(50,300,false,false);
 			new self.PlatformStd(100,400,false,false);
 			new self.PlatformStd(100,300,false,false);
@@ -17,6 +18,16 @@
 			new self.PlatformStd(0,500,false,false);
 			new self.PlatformStd(400,600,false,false,false,undefined,true);
 			new self.enemy(7);
+=======
+			new self.PlatformStd(50,150,false,false);
+			new self.PlatformStd(100,250,false,false);
+			new self.PlatformStd(100,150,false,false);
+			new self.PlatformStd(300,450,false,false);
+			new self.PlatformStd(250,250,false,false);
+			new self.PlatformStd(250,350,false,false,true);
+			new self.PlatformStd(0,350,false,false);
+			new self.PlatformStd(400,450,false,false,false,undefined,true);
+>>>>>>> parent of 737b0f6... Enemies
 			self.play();
 		}
 		self.levels[1] = function() {
@@ -52,7 +63,6 @@
 	})();
 	self.loadlevel = function(level) {
 		if(level != undefined && level < self.levels.length && level >= 0){
-			self.enemies = [];
 			self.platforms = [];
 			self.level = level;
 			self.player.health = 100;
@@ -61,30 +71,32 @@
 			self.levels[level]();
 		}
 		else{
-			self.levels[level-1]();
+			console.log("No level " + level);
 		}
 	}
 	self.restart = function() {
 		self.loadlevel(0);
 		self.lifes = 5;
+		self.time = 0;
+		self.time -= self.save/1000;
 		
 	}
 >>>>>>> parent of 0557083... 1
 	self.draw = function(){
-		self.ctx.clearRect(0,0,self.width,self.height);
-		for(var i = 0;i<self.lifes;i++){
-			self.ctx.drawImage(self.images.heart,100+50*i,20);
-		}
-		self.showText((self.timer.getTime()/1000).toFixed(1) + " sec",200,20);
-		self.player.draw();
-		for(var i = 0;i<self.enemies.length;i++){
-			self.enemies[i].draw();
-		}
-		for(var i = 0;i<self.platforms.length;i++){
-			self.platforms[i].draw();
+		if(self.looping){
+			self.ctx.clearRect(0,0,self.width,self.height);
+			for(var i = 0;i<self.lifes;i++){
+				self.ctx.drawImage(self.heart,100+50*i,20);
+			}
+			self.showText("Total time: " + Math.round(self.time) + " seconds", 180,20);
+			self.player.draw();
+			for(var i = 0;i<self.platforms.length;i++){
+				self.platforms[i].draw();
+			}
 		}
 	}
 	self.calculate = function(){
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	self.loadlevels = (function() {
@@ -175,6 +187,10 @@
 		for(var i = 0; i<self.enemies.length; i++){
 			var me = self.enemies[i];
 >>>>>>> parent of 0557083... 1
+=======
+		for(var i = 0; i<self.objects.length; i++){
+			var me = self.objects[i];
+>>>>>>> parent of 737b0f6... Enemies
 			if(me.gravity){
 				if(typeof me.ySpeed == "number"){
 					me.ySpeed += 0.0098*me.gravMult*self.timeCorrection;
@@ -241,10 +257,14 @@
 			self.platform = undefined;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		self.player.calculate();
 >>>>>>> parent of 737b0f6... Enemies
 =======
 >>>>>>> parent of 0557083... 1
+=======
+		self.player.calculate();
+>>>>>>> parent of 737b0f6... Enemies
 	}
 	self.timedLoop = function() {
 		self.calculate();
@@ -261,7 +281,11 @@
 =======
 		if(!self.looping){
 			self.looping = true;
+<<<<<<< HEAD
 >>>>>>> parent of 0557083... 1
+=======
+			self.loopId = window.requestAnimationFrame(self.loop);
+>>>>>>> parent of 737b0f6... Enemies
 		}
 	}
 	self.showTextAdv = function(text, posX, posY, color, font) {
@@ -281,10 +305,14 @@
 		self.looping = false;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		window.cancelAnimationFrame(self.loopId);
 =======
 >>>>>>> parent of 0557083... 1
+=======
+		window.cancelAnimationFrame(self.loopId);
+>>>>>>> parent of 737b0f6... Enemies
 		self.ctx.fillStyle = "rgba(0,0,0,1)";
 		self.ctx.font = "50px Gulim";
 		self.ctx.fillText("PAUSE", self.width/2-100, self.height/2-25);
@@ -293,6 +321,7 @@
 	}
 	self.stop = function(fail) {
 		if(fail){
+<<<<<<< HEAD
 <<<<<<< HEAD
 			self.save = self.timestamp;
 			self.lastTime = undefined;
@@ -340,13 +369,51 @@
 		}
 >>>>>>> parent of 737b0f6... Enemies
 =======
+=======
+			self.save = self.timestamp;
+>>>>>>> parent of 737b0f6... Enemies
 			self.lastTime = undefined;
 			self.looping = false;
+			window.cancelAnimationFrame(self.loopId);
 			self.ctx.fillStyle = "black";
 			self.ctx.fillRect(0,0,self.width,self.height);
+			self.text = "You lose. Your time was " + self.time + " seconds.";
 			self.text2 = "You made it to level " + (self.level+1) + ".";
-			self.text3 = "Restart"
-			self.showTextAdv(self.text,0,self.height/2+90,"white", "30px Miriam Fixed");
+			self.text3 = "Restarting..."
+			setTimeout(function(){
+				for(var i = 0;i<self.text.length;i++){
+					self.showTextTimer(i,1);
+				}
+				setTimeout(function(){
+					for(var i = 0;i<self.text2.length;i++){
+						self.showTextTimer(i,2);
+					}
+					setTimeout(function(){
+						for(var i = 0;i<self.text3.length;i++){
+							self.showTextTimer(i,3);
+						}
+						setTimeout(function(){
+							self.restart();
+						},2000/2);
+					},3000/2);
+			},5500/2);},500/2);
+		}
+	}
+	self.showTextTimer=function(i,text){
+		if(text==1){
+			setTimeout(function(){
+				self.showTextAdv(self.text[i],30*i,self.height/2-30,"white", "30px Miriam Fixed");
+			},100/2*i);
+		}
+		else if(text==2){
+			setTimeout(function(){
+				self.showTextAdv(self.text2[i],30*i,self.height/2+30,"white", "30px Miriam Fixed");
+			},100/2*i);
+		}
+		else if(text == 3){
+			setTimeout(function(){
+				self.showTextAdv(self.text3[i],30*i,self.height/2+90,"white", "30px Miriam Fixed");
+			},100/2*i);
 		}
 >>>>>>> parent of 0557083... 1
 	}
@@ -375,6 +442,7 @@
 			}
 			self.loopId = window.requestAnimationFrame(function(timestamp){self.loop(timestamp);});
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 		self.loopId = window.requestAnimationFrame(self.loop);
@@ -407,5 +475,7 @@
 		self.loadlevel(0);
 		self.timer.startTimer();
 >>>>>>> parent of 0557083... 1
+=======
+>>>>>>> parent of 737b0f6... Enemies
 	}
 })(window.game = window.game || {});

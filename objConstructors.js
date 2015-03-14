@@ -43,6 +43,7 @@
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	self.enemy = function(startPlatform) {
 		this.gravMult = 1;
 		this.gravity = true;
@@ -80,6 +81,8 @@
 		}
 		self.enemies.push(this);
 	}
+=======
+>>>>>>> parent of 737b0f6... Enemies
 =======
 >>>>>>> parent of 737b0f6... Enemies
 })(window.game = window.game || {});

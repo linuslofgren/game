@@ -8,63 +8,19 @@
 			}
 		}
 		if(!is){
-			self.keys.push(v);
+			self.keys.unshift(v);
 		}
 		return is;
 	}
 	self.keypressed = function(e){
 		if(e.keyCode == 38){
-			if(!self.varinarrayadd(38, self.keys) && self.looping){self.player.jump();}
+			self.player.jump();
 		}
 		else if(e.keyCode == 39){
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 			self.varinarrayadd(39,self.keys)
 		}
 		else if(e.keyCode == 37){
 			self.varinarrayadd(37, self.keys);
-=======
-			if(!self.varinarrayadd(39,self.keys)){
-			self.player.xSpeed = 1;
-			}
-		}
-		else if(e.keyCode == 37){
-			if(!self.varinarrayadd(37, self.keys)){
-			self.player.xSpeed = -1;
-			}
->>>>>>> origin/master
-=======
-			if(!self.varinarrayadd(39,self.keys)){
-			self.player.xSpeed += 1;
-			}
-		}
-		else if(e.keyCode == 37){
-			if(!self.varinarrayadd(37, self.keys)){
-			self.player.xSpeed += -1;
-			}
->>>>>>> parent of 2fe194d... Good Input
-=======
-			if(!self.varinarrayadd(39,self.keys)){
-			self.player.xSpeed += 1;
-			}
-		}
-		else if(e.keyCode == 37){
-			if(!self.varinarrayadd(37, self.keys)){
-			self.player.xSpeed += -1;
-			}
->>>>>>> parent of 2fe194d... Good Input
-=======
-			if(!self.varinarrayadd(39,self.keys)){
-			self.player.xSpeed += 1;
-			}
-		}
-		else if(e.keyCode == 37){
-			if(!self.varinarrayadd(37, self.keys)){
-			self.player.xSpeed += -1;
-			}
->>>>>>> parent of 2fe194d... Good Input
 		}
 		else if(e.keyCode == 27){
 			if(self.looping){

@@ -1,1 +1,1 @@
-game.loadlevel(0);
+game.start();

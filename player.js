@@ -60,6 +60,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 			switch(self.keys[0]){
 				case 37:
 					this.xSpeed = -1;
@@ -95,6 +96,9 @@
 			}
 >>>>>>> parent of 0557083... 1
 >>>>>>> origin/master
+=======
+			if(!self.varinarray(37,self.keys)&&!self.varinarray(39,self.keys)){this.xSpeed = this.xSpeed*this.friction;}
+>>>>>>> parent of 2fe194d... Good Input
 =======
 			if(!self.varinarray(37,self.keys)&&!self.varinarray(39,self.keys)){this.xSpeed = this.xSpeed*this.friction;}
 >>>>>>> parent of 2fe194d... Good Input
